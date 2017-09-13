@@ -36,6 +36,7 @@ class Relion(CMakePackage):
 
     version('2.0.3', 'c61be5ef00848806278b341f43893f5d')
     version('20170725-2e60eb9', git='https://github.com/3dem/relion.git', commit='2e60eb94c2e5b334d7b18219be0afbb9ad2905b7', submodules=True )
+    version('2.1.b1', git='https://github.com/3dem/relion.git', tag='2.1.b1', submodules=True )
 
     variant('gui', default=True, description="build the gui")
     variant('cuda', default=False, description="enable compute on gpu")
