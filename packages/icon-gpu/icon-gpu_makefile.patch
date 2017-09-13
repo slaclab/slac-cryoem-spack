@@ -1,0 +1,55 @@
+diff -Naur ICON_GPU_v1.2.5_CentOS64/Makefile ICON_GPU_v1.2.5_CentOS64.make/Makefile
+--- ICON_GPU_v1.2.5_CentOS64/Makefile	1969-12-31 16:00:00.000000000 -0800
++++ ICON_GPU_v1.2.5_CentOS64.make/Makefile	2017-09-05 10:24:04.121694372 -0700
+@@ -0,0 +1,51 @@
++all: .log iconmask2 iconmask1 iconpreprocess icongpu
++
++clean:
++	rm lib/log.o
++	rm bin/ICONMask1
++	rm bin/ICONMask2
++	rm bin/ICONPreProcess
++	rm bin/ICON-GPU
++
++.log: gen-config ln-config run-config rm-config cp-config
++
++gen-config:
++	cd config/genConfigCode && \
++	  gcc -o genConfig genConfig.c
++
++ln-config: gen-config
++	ln -sf `pwd`/config/genConfigCode/genConfig ./genConfig
++
++run-config: ln-config
++	exec ./genConfig
++
++rm-config: run-config
++	rm -f genConfig
++
++cp-config: run-config
++	cd log && gcc -o ../lib/log.o -c log.c
++
++fftw3:
++	mkdir -p supportLib/fftw-3.3.4
++	tar -zxvf supportLib/fftw-3.3.4.tar.gz -C supportLib/
++	cd supportLib/fftw-3.3.4 && \
++	  ./configure --prefix=`pwd` --enable-float && \
++	  make && \
++	  make install && \
++	  cp lib/libfftw3f.a ../../lib
++
++iconmask2: .log
++	cd ICONMask2 && \
++	  gcc -o ../bin/ICONMask2 ICONMask2.o mrcfile2.o ../lib/log.o -lfftw3f -lm
++
++iconmask1: .log
++	cd ICONMask1 && \
++	  gcc -o ../bin/ICONMask1 ICONMask1.o mrcfile2.o ../lib/log.o -lfftw3f -lm
++
++iconpreprocess: .log
++	cd ICONPreProcess && \
++	  gcc -o ../bin/ICONPreProcess ICONPreProcess.o mrcfile2.o ../lib/log.o -lm
++
++icongpu: .log
++	cd ICON-GPU && \
++	  nvcc -o ../bin/ICON-GPU ICONGPU.o calFRC.o readSlicePart_crossV.o MainCode_crossV.o readSlicePart.o MainCode.o nufft_gpu_v8.o Iteration2.o saveMRC_real.o alpha_new2.o mrcfile2.o saveMRC.o px2D.o weight.o reProject_NFFT.o ../lib/log.o -lcufft  -lpthread

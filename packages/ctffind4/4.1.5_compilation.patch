@@ -1,0 +1,13 @@
+--- a/src/core/core_headers.h	2017-05-03 06:22:36.743396207 +0000
++++ b/src/core/core_headers.h	2017-05-03 06:22:49.596706382 +0000
+@@ -56,10 +56,6 @@
+ #include "reconstruct_3d.h"
+ #include "electron_dose.h"
+ #include "run_profiles.h"
+-#include "refinement_package.h"
+-#include "refinement.h"
+-#include "database.h"
+-#include "project.h"
+ #include "job_packager.h"
+ #include "job_tracker.h"
+ #include "numeric_text_file.h"
