@@ -38,7 +38,7 @@
 # please first remove this boilerplate and all FIXME comments.
 #
 from spack import *
-import shutil
+import glob
 import os
 
 class Motioncor2(Package):
@@ -49,16 +49,18 @@ class Motioncor2(Package):
 
     #version('10-19-2016',    '26eea5dc24269da499f1059f3677307a')
     version('01-30-2017',    'aec2f2653ba948e6d9a91a851171ce27', url='http://msg.ucsf.edu/MotionCor2/MotionCor2-01-30-2017.tar.gz')
+    version('1.0.0',    '490f4df8daa9f5ddb9eec3962ba3ddf5', url='http://msg.ucsf.edu/MotionCor2/MotionCor2-1.0.0.tar.gz')
+    version('1.0.2',    'f2f4c5b09170ab8480ca657f14cdba2b', url='http://msg.ucsf.edu/MotionCor2/MotionCor2-1.0.2.tar.gz')
 
-    depends_on('cuda', when='@01-30-2017', type=('link','run'))
+
+    depends_on('cuda@8.0.61', type=('link','run'))
     depends_on('libtiff', type=('link','run'))
     # still needs libcuda.so.1 to be symlinked
 
     def install(self, spec, prefix):
 
-        # TODO: deal with mapping of arch etc to path and version
         bin_dir = prefix + '/bin/'
         if not os.path.exists( bin_dir ):
             os.makedirs( bin_dir )
-        os.chmod( 'MotionCor2-01-30-2017', 0555 )
-        shutil.copyfile( 'MotionCor2-01-30-2017', bin_dir + '/MotionCor2' )
+        for i in glob.glob( 'MotionCor2*' ):
+            install( i, bin_dir + '/MotionCor2' )
