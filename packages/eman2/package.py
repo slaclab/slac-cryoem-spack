@@ -47,20 +47,25 @@ class Eman2(CMakePackage):
     depends_on('boost+python', type=('build','run'), when='~mpi')
     depends_on('boost+python+mpi', type=('build','run'), when='+mpi')
     depends_on('cmake', type=('build'))
-    depends_on('py-pyqt')
-    depends_on('py-sip')
-    depends_on('py-nose')
+    depends_on('py-pyqt', type=('run',))
+    depends_on('py-sip', type=('run',))
+    depends_on('py-nose', type=('run',))
     depends_on('freetype')
     depends_on('ftgl')
     depends_on('zlib')
     depends_on('libx11')
+    depends_on('py-bsddb3', type=('run',) )
+    depends_on('py-py-open-g-l', type=('run',))    
+
+    depends_on('py-matplotlib+ipython', type=('run'))
+    depends_on('py-ipython', type=('run'))
 
     # optional
     depends_on('hdf5')
     depends_on('libtiff')
     depends_on('libpng')
 
-    #depends_on('cuda', when='+cuda')
+    depends_on('cuda', when='+cuda')
     # depends_on('miniconda2')
 
     def cmake_args(self):
@@ -72,6 +77,10 @@ class Eman2(CMakePackage):
 
         spec = self.spec
         args = std_cmake_args
+
+        if '+mpi' in spec:
+            args.extend([ '-DCMAKE_CXX_COMPILER:STRING=%s' % spec['mpi'].mpicxx ])
+
         args.extend([ 
             '-DCMAKE_INSTALL_PREFIX=%s' % prefix,
             '-DEMAN_PREFIX=%s' % prefix,
@@ -106,6 +115,7 @@ class Eman2(CMakePackage):
 
             '-DFTGL_INCLUDE_PATH=' + spec['ftgl'].prefix.include,
         ])
+
         #if '+cuda' in spec:
         # ENABLE_SPARX_CUDA
         # ENABLE_EMAN_CUDA
