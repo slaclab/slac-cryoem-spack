@@ -50,8 +50,11 @@ class Gctf(Package):
     url      = "http://www.mrc-lmb.cam.ac.uk/kzhang/Gctf/Gctf_v0.50_and_examples.tar.gz"
 
     version('0.50', 'ceacc727defc192d0ee0c6ae03c58965', url=url )
+    version('1.18', 'ceacc727defc192d0ee0c6ae03c58965', url=url )
+    #version('1.18', 'c1627f87ccf6374c7a3f3456bed30b97', url='http://www.mrc-lmb.cam.ac.uk/kzhang/Gctf/Gctf_v1.08/Gctf-v1.18_sm_30_cu8.0_x86_64' )
 
     depends_on('cuda@7.5.18', when='@0.50', type='run')
+    depends_on('cuda@8.0.61', when='@1.08', type='run')
 
     def install(self, spec, prefix):
 
