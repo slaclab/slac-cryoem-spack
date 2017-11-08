@@ -38,7 +38,7 @@ class IconGpu(MakefilePackage):
     version('1.2.5', '25f3db95535b617d152966e1ac4f22e9')
 
     depends_on('fftw@3.3.4+openmp+float~mpi', type=('build', 'link', 'run'))
-    depends_on('cuda', type=('build', 'run'))
+    depends_on('cuda@8.0.61', type=('build', 'run'))
 
     # add makefile
     patch('icon-gpu_makefile.patch')
