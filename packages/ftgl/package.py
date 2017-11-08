@@ -51,13 +51,10 @@ class Ftgl(AutotoolsPackage):
 
     depends_on('freetype')
     depends_on('qt')
-    # depends_on('libx11')
+    depends_on('mesa-glu')
 
     patch('add_gllibs.patch', when='@2.1.3-rc5')
 
     def configure_args(self):
-        # FIXME: Add arguments other than --prefix
-        # FIXME: If not needed delete this function
-        #args = ['CFLAGS=-lm -lGLU -lGL',]
         args = ['CFLAGS=-lm ',]
         return args
