@@ -56,7 +56,7 @@ class Imod(Package):
     # FIXME: Add dependencies if required.
     #depends_on('qt@4.8.6')
     depends_on('libtiff')
-    depends_on('cuda')
+    depends_on('cuda@.0:8.99', when="@4.9.4")
     depends_on('fftw')
     depends_on('hdf5')
     depends_on('jdk')
