@@ -62,5 +62,5 @@ class Motioncor2(Package):
         bin_dir = prefix + '/bin/'
         if not os.path.exists( bin_dir ):
             os.makedirs( bin_dir )
-        for i in glob.glob( 'MotionCor2*' ):
+        for i in glob.glob( 'MotionCor2_*' ):
             install( i, bin_dir + '/MotionCor2' )
