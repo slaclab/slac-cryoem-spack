@@ -44,6 +44,7 @@ class Eman2(CMakePackage):
     depends_on('gsl')
     depends_on('python', type=('build','run'))
     depends_on('py-numpy')
+    depends_on('boost')
     depends_on('boost+python', type=('build','run'), when='~mpi')
     depends_on('boost+python+mpi', type=('build','run'), when='+mpi')
     depends_on('cmake', type=('build'))
