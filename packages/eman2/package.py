@@ -32,7 +32,7 @@ class Eman2(CMakePackage):
     homepage = "http://blake.bcm.edu/emanwiki/EMAN2"
     url      = "https://github.com/cryoem/eman2"
 
-    version('master', git=url )
+    version('develop', git=url )
     #version('2.12', '5fbdd11135e446de15a5e8e9c7e60904', url='http://ncmi.bcm.edu/ncmi/software/counter_222/software_133/eman2.12.source.tar.gz')
 
     variant('mpi', default=False, description="Builds with support for MPI")
