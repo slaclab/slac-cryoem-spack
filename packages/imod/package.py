@@ -51,12 +51,13 @@ class Imod(Package):
     #url      = "http://www.slac.stanford.edu/~ytl/imod-4.9.4-source.tar.gz"
     url = 'http://bio3d.colorado.edu/imod/AMD64-RHEL5/imod_4.9.4_RHEL6-64_CUDA8.0.sh'
 
+    version('4.9.7', '349f021461e0c76bb744a3d4cc56c4a6' , url='http://bio3d.colorado.edu/imod/AMD64-RHEL5/imod_4.9.7_RHEL7-64_CUDA8.0.sh', expand=False )
     version('4.9.4', '0298eac521cdc76fbb3578751acc6c96', expand=False)
 
     # FIXME: Add dependencies if required.
     #depends_on('qt@4.8.6')
     depends_on('libtiff')
-    depends_on('cuda@8.0:8.99', when="@4.9.4")
+    depends_on('cuda@8.0:8.99')
     depends_on('fftw')
     depends_on('hdf5')
     depends_on('jdk')
@@ -85,12 +86,12 @@ class Imod(Package):
         """ install from binary """
         # deps on libGLU: yum install -y mesa-libGLU
         
-        cmd = 'sh ./imod_4.9.4_RHEL6-64_CUDA8.0.sh -yes -dir %s -skip' % (prefix,)
+        cmd = 'sh `ls -1 imod_*.sh` -yes -dir %s -skip' % (prefix,)
         # logging.error( cmd )
         os.system( cmd )
         # flatten
-        for f in glob.glob('%s/imod_4.9.4/*' % (prefix,)):
+        for f in glob.glob('%s/imod_*/*' % (prefix,)):
             shutil.move( f, prefix )
         os.remove( '%s/IMOD' % prefix )
-        shutil.rmtree( '%s/imod_4.9.4' % prefix )
+        #shutil.rmtree( '%s/imod_*' % prefix )
         
