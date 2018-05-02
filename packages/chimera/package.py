@@ -40,13 +40,14 @@
 from spack import *
 
 
-class Chimera(Package):
+class Chimera(MakefilePackage):
     """UCSF Chimera is a highly extensible program for interactive visualization and analysis of molecular structures and related data, including density maps, supramolecular assemblies, sequence alignments, docking results, trajectories, and conformational ensembles. High-quality images and animations can be generated. Chimera includes complete documentation and several tutorials, and can be downloaded free of charge for academic, government, nonprofit, and personal use. Chimera is developed by the Resource for Biocomputing, Visualization, and Informatics (RBVI), funded by the National Institutes of Health (NIGMS P41-GM103311)."""
 
     # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://www.cgl.ucsf.edu/chimera/"
     url      = "http://plato.cgl.ucsf.edu/trac/chimera/browser/trunk"
 
+    version('1.12', svn='http://plato.cgl.ucsf.edu/trac/chimera/browser/branches/release-1_12')
     version('daily', svn='http://svn.cgl.ucsf.edu/svn/chimera/trunk/')
 
     # FIXME: Add dependencies if required.
