@@ -37,6 +37,7 @@ class Lsf(Package):
     url = "file:///afs/slac.stanford.edu/package/lsf/source/10.1.0.1/lsf10.1_linux2.6-glibc2.3-x86_64-427336.tar"
 
     # FIXME: Add proper versions and checksums here.
+    version('10.1.0.3', '742ae21b003ca10b62e6d14043eabc63', url='file:///afs/slac.stanford.edu/package/lsf/source/10.1.0.3/lsf10.1_linux2.6-glibc2.3-x86_64-459939.tar' )
     version('10.1.0.1', 'dfad836dc68169d05898b6019e7c7a18')
     #version('10.1', 'bfa8dee8f3aea8bf11ecaaf3c06ef20e')
 
