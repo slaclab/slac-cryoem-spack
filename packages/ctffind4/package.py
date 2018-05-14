@@ -36,7 +36,7 @@ class Ctffind4(AutotoolsPackage):
     version('4.1.8', '8ae9d9abe363141a3792981b5a2fae94', url='http://grigoriefflab.janelia.org/sites/default/files/ctffind-4.1.8.tar.gz' )
     version('4.1.5', '3c1b21f9b356b1327ab4938b31130105')
 
-    depends_on('mkl')
+    #depends_on('mkl')
     depends_on('wx', type=('build','link'))
     depends_on('cairo')
     depends_on('fftw')
