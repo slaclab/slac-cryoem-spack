@@ -51,11 +51,13 @@ class Motioncor2(Package):
     version('1.0.1',    '73d94a80abdef9bf37bbc80fbbe76622')
     version('1.0.2',    'f2f4c5b09170ab8480ca657f14cdba2b', url='http://msg.ucsf.edu/MotionCor2/MotionCor2-1.0.2.tar.gz')
     version('1.0.5',    '478ff31a183aeb5f4db15010a599047f', url='http://msg.ucsf.edu/MotionCor2/MotionCor2-1.0.5.tar.gz')
+    version('1.1.0',    '2b143c9b79050c64d0f275d2c7dcfb18', url='http://msg.ucsf.edu/MotionCor2/MotionCor2-1.1.0.zip' )
 
     depends_on('cuda@8.0:8.99', when="@1.0.0") #, type='run')
     depends_on('cuda@8.0:8.99', when="@1.0.1") #, type='run')
     depends_on('cuda@8.0:8.99', when="@1.0.2") #, type='run')
     depends_on('cuda@9.1:9.99', when="@1.0.5" )
+    depends_on('cuda@9.1:9.99', when="@1.1.0" )
     # depends_on('libtiff@3', type=('link','run'))
     # still needs libcuda.so.1 to be symlinked
 
