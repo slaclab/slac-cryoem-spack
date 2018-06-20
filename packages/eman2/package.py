@@ -67,6 +67,8 @@ class Eman2(CMakePackage):
     depends_on('libpng')
 
     depends_on('cuda', when='+cuda')
+    depends_on('py-theano+gpu', when='+cuda')
+    depends_on('py-theano~gpu', when='~cuda')
     # depends_on('miniconda2')
 
     def cmake_args(self):
