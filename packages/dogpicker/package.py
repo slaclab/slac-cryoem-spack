@@ -35,7 +35,7 @@ class Dogpicker(Package):
     version('0.2.1', 'bff112fc2274a556d49d3f066709953e')
 
     depends_on('py-numpy')
-    depends_on('py-pil')
+    depends_on('py-pillow')
     depends_on('py-scipy')
 
     def install(self, spec, prefix):
