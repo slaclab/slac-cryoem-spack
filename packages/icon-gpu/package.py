@@ -35,13 +35,15 @@ class IconGpu(MakefilePackage):
     homepage = "http://feilab.ibp.ac.cn/LBEMSB/ICON.html"
     url      = "http://feilab.ibp.ac.cn/software/ICON/ICON-GPU_v1.2.5_CentOS64.tar.gz"
 
+    version('1.2.7', '1da8987b7f579eacf7500385092a49aa', url='http://feilab.ibp.ac.cn/software/ICON/ICON-GPU_v1.2.7_CentOS64.tar.gz')
     version('1.2.5', '25f3db95535b617d152966e1ac4f22e9')
 
     depends_on('fftw@3.3.4+openmp+float~mpi', type=('build', 'link', 'run'))
     depends_on('cuda@8.0.61', type=('build', 'run'))
 
     # add makefile
-    patch('icon-gpu_makefile.patch')
+    patch('icon-gpu_makefile.patch', when='@1.2.5')
+    patch('icon-gpu_1.2.7_makefile.patch', when='@1.2.7')
 
     def install(self, spec, prefix):
         # for f in os.listdir('.'):
