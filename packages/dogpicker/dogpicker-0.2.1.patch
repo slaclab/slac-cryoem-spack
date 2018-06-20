@@ -1,0 +1,26 @@
+diff -Naur dogpicker/appionlib/apImage.py dogpicker.patched/appionlib/apImage.py
+--- dogpicker/appionlib/apImage.py	2015-03-02 11:40:38.000000000 -0800
++++ dogpicker.patched/appionlib/apImage.py	2018-06-20 16:34:58.000000000 -0700
+@@ -559,7 +559,7 @@
+ 		elif a.shape[2]==1:  # a.shape == (y, x, 1)
+ 			return Image.fromstring("L", (w, h), a.tostring())
+ 	elif len(a.shape)==2:  # a.shape == (y, x)
+-		return Image.fromstring("L", (w, h), a.tostring())
++		return Image.frombytes("L", (w, h), a.tostring())
+ 	else:
+ 		raise ValueError, "unsupported image mode"
+
+diff -Naur dogpicker/pyami/imagefun.py dogpicker.patched/pyami/imagefun.py
+--- dogpicker/pyami/imagefun.py	2010-01-15 18:08:13.000000000 -0800
++++ dogpicker.patched/pyami/imagefun.py	2018-06-20 16:35:22.000000000 -0700
+@@ -290,8 +290,8 @@
+ 	values are used where labels is larger than zero.
+ 	"""
+ 	input = numpy.asarray(input)
+-	if labels == None:
+-		raise RuntimeError, 'labels are needed'
++	#if labels == None:
++	#	raise RuntimeError, 'labels are needed'
+ 	if labels.shape != input.shape:
+ 		raise RuntimeError, 'input and labels shape are not equal'
+ 	moments = []

@@ -38,6 +38,8 @@ class Dogpicker(Package):
     depends_on('py-pillow')
     depends_on('py-scipy')
 
+    patch( 'dogpicker-0.2.1.patch', when='@0.2.1' )
+
     def install(self, spec, prefix):
         install_tree( '.', prefix + '/bin/'  )
 
