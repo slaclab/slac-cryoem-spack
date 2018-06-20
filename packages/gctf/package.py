@@ -49,12 +49,9 @@ class Gctf(Package):
     homepage = "http://www.mrc-lmb.cam.ac.uk/kzhang/"
     url      = "http://www.mrc-lmb.cam.ac.uk/kzhang/Gctf/Gctf_v0.50_and_examples.tar.gz"
 
-    version('0.50', 'ceacc727defc192d0ee0c6ae03c58965', url=url )
-    version('1.18', 'ceacc727defc192d0ee0c6ae03c58965', url=url )
-    #version('1.18', 'c1627f87ccf6374c7a3f3456bed30b97', url='http://www.mrc-lmb.cam.ac.uk/kzhang/Gctf/Gctf_v1.08/Gctf-v1.18_sm_30_cu8.0_x86_64' )
+    version('1.18', 'c1627f87ccf6374c7a3f3456bed30b97', url='https://www.mrc-lmb.cam.ac.uk/kzhang/Gctf/Gctf_v1.18/Gctf-v1.18_sm_30_cu8.0_x86_64', expand=False )
 
-    depends_on('cuda@7.5.18', when='@0.50', type='run')
-    depends_on('cuda@8.0.61', when='@1.08', type='run')
+    depends_on('cuda@8.0.61') #, when='@1.18' )
 
     def install(self, spec, prefix):
 
@@ -62,8 +59,5 @@ class Gctf(Package):
         bin_dir = prefix + '/bin/'
         if not os.path.exists( bin_dir ):
             os.makedirs( bin_dir )
-        path = 'bin/Gctf-v0.50_sm_30_cu7.5_x86_64'
-        #st = os.stat(path)
-        #os.chmod( path, st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH )
-        os.chmod( path, 0777 )
-        shutil.copyfile( path, bin_dir + '/Gctf' )
+        shutil.copyfile( self.stage.archive_file, bin_dir + '/Gctf' )
+        os.chmod( bin_dir + '/Gctf', 0755 )
